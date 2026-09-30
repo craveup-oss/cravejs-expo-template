@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "note": "Neutral assets generated from repository-owned primitives for the public Crave.js Expo template. Approval is bound to exact bytes.",
+  "note": "Template assets with exact-byte provenance. Original Maple & Main demo food photography generated for Crave using the OpenAI image generation tool, 2026-09-30.",
   "statuses": {
     "crave-owned": "Programmatically authored for this public template and owned by Crave Up, Inc.",
     "licensed": "Third-party work with recorded source and licence.",
@@ -104,6 +104,20 @@
       "source": "scripts/create-public-mirror-snapshot.mjs",
       "license": "MIT",
       "sha256": "d27a9c3db30eb62aa52a4b598bcc8401dbb2319a8f0c52bdedd8686844315bfd"
+    },
+    {
+      "path": "assets/demo/crispy-chicken.jpg",
+      "status": "crave-owned",
+      "source": "Original OpenAI image generation commissioned by Crave, 2026-09-30; fictional Maple & Main demo.",
+      "license": "MIT",
+      "sha256": "0ca358257b568801f16123888700d50225e00b77e4ddbd913cc036ef12b9bf9c"
+    },
+    {
+      "path": "assets/demo/smash-burger.jpg",
+      "status": "crave-owned",
+      "source": "Original OpenAI image generation commissioned by Crave, 2026-09-30; fictional Maple & Main demo.",
+      "license": "MIT",
+      "sha256": "4bc7f0112ec7c3fb5383fa8d9f670cf465b20b9fa94ffe380cb9875e1b8bcbc3"
     }
   ]
 }
