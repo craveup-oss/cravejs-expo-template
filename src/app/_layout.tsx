@@ -1,13 +1,12 @@
+import { Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack, usePathname, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
 import { BagProvider } from '@/features/bag';
-import {
-  CatalogBrowseProvider,
-  isCatalogBrowsePath,
-} from '@/features/catalog';
+import { CatalogBrowseProvider, isCatalogBrowsePath } from '@/features/catalog';
 import { getStorefrontRuntime } from '@/lib/storefront';
 import { colors, useAppFonts } from '@/theme';
 
@@ -77,17 +76,37 @@ export default function RootLayout() {
         createBootstrapService={createBootstrapService}
       >
         <StatusBar style="dark" />
-        <Stack
-          screenOptions={{
-            contentStyle: { backgroundColor: colors.canvas },
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="error" />
-          <Stack.Screen name="offline" />
-          <Stack.Screen name="store-closed" />
-          <Stack.Screen name="checkout" />
-        </Stack>
+        <View style={{ flex: 1 }}>
+          {process.env.EXPO_PUBLIC_CRAVEUP_API_URL ===
+            'https://demo.maple-main.example' && (
+            <SafeAreaView
+              edges={['top']}
+              style={{ backgroundColor: colors.ink }}
+            >
+              <Text
+                style={{
+                  color: colors.canvas,
+                  textAlign: 'center',
+                  padding: 8,
+                  fontSize: 11,
+                }}
+              >
+                Maple &amp; Main demo · Menu browsing only
+              </Text>
+            </SafeAreaView>
+          )}
+          <Stack
+            screenOptions={{
+              contentStyle: { backgroundColor: colors.canvas },
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="error" />
+            <Stack.Screen name="offline" />
+            <Stack.Screen name="store-closed" />
+            <Stack.Screen name="checkout" />
+          </Stack>
+        </View>
       </CatalogBrowseProvider>
     </BagProvider>
   );

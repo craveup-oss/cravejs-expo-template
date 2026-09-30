@@ -33,7 +33,7 @@ export const englishMessages = {
   'bag.clear.body.one':
     'This drink comes out and you start again.',
   'bag.clear.body.other':
-    'All {count} drinks come out and you start again.',
+    'All {count} items come out and you start again.',
   'bag.clear.title': 'Clear your bag?',
   'bag.discount': 'Discount',
   'bag.empty.body': brandConfig.copy.bagEmptyBody,
@@ -136,7 +136,7 @@ export const englishMessages = {
   'catalog.heroTitle': brandConfig.copy.catalogHeroTitle,
   'catalog.loading': 'Loading menu',
   'catalog.locationLabel': 'Pickup',
-  'catalog.menuCount': '{count} drinks',
+  'catalog.menuCount': '{count} items',
   'catalog.notFound': 'This menu could not be found.',
   'catalog.offline': 'Connect to the internet to load the menu.',
   'catalog.orderingUnavailable': 'Ordering is unavailable right now',
