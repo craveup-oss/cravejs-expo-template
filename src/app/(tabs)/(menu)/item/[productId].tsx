@@ -1,9 +1,6 @@
+import { isMapleMainDemo } from '@/demo/maple-main';
 import { useNetworkState } from 'expo-network';
-import {
-  router,
-  useFocusEffect,
-  useLocalSearchParams,
-} from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
@@ -20,10 +17,7 @@ import {
   type ItemCartRetryPhase,
   type ItemDetailLoadResult,
 } from '@/features/item';
-import {
-  getStorefrontRuntime,
-  type StorefrontRuntime,
-} from '@/lib/storefront';
+import { getStorefrontRuntime, type StorefrontRuntime } from '@/lib/storefront';
 import type { SelectedModifierTypes } from '@craveup/storefront-sdk';
 
 type ItemRequest = Readonly<{
@@ -61,7 +55,9 @@ export default function ItemDetailRoute() {
   const intentSequence = useRef(0);
   const [attempt, setAttempt] = useState(0);
   const [request, setRequest] = useState<ItemRequest>();
-  const [selections, setSelections] = useState<readonly SelectedModifierTypes[]>([]);
+  const [selections, setSelections] = useState<
+    readonly SelectedModifierTypes[]
+  >([]);
   const [quantity, setQuantity] = useState(1);
   const [favourite, setFavourite] = useState(false);
   const [favouritePending, setFavouritePending] = useState(false);
@@ -247,7 +243,9 @@ export default function ItemDetailRoute() {
 
     try {
       if (favourite) {
-        const removed = await runtime.services.favourites.remove(load.product.id);
+        const removed = await runtime.services.favourites.remove(
+          load.product.id,
+        );
         if (favouriteGeneration.current === activeGeneration && removed) {
           setFavourite(false);
         }
@@ -282,7 +280,11 @@ export default function ItemDetailRoute() {
         actionStatus={submission?.status}
         favourite={favourite}
         favouritePending={favouritePending}
-        onAdd={runtime && model?.canAdd ? () => void addItem() : undefined}
+        onAdd={
+          runtime && !isMapleMainDemo(runtime.environment) && model?.canAdd
+            ? () => void addItem()
+            : undefined
+        }
         onBack={goBack}
         onChangeQuantity={(nextQuantity) => {
           if (submission?.status === 'pending') return;

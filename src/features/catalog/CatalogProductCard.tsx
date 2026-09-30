@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     opacity: 0.72,
   },
   rowImage: {
-    height: 168,
+    height: 112,
     width: 112,
   },
   rowCard: {

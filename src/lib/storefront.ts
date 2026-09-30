@@ -1,3 +1,6 @@
+import { isMapleMainDemo, createMapleMainFetch } from '../demo/maple-main.ts';
+import { mapleMainImages } from '../demo/maple-main-assets.ts';
+import { createInMemoryStorefrontSecretStore } from './storefront-secret-store.ts';
 import {
   createStorefrontClient,
   type StorefrontSessionStore,
@@ -41,10 +44,7 @@ import {
   createCheckoutHandoffRecoveryStore,
   type CheckoutHandoffRecoveryStore,
 } from './checkout-handoff-recovery-store.ts';
-import {
-  createCartService,
-  type CartService,
-} from './cart.ts';
+import { createCartService, type CartService } from './cart.ts';
 import {
   createCustomerSessionStore,
   type CustomerSessionStore,
@@ -115,6 +115,9 @@ export function createStorefrontRuntime(
   const sessionStore: StorefrontSessionStore = cartSessions;
   const client = createStorefrontClient({
     baseUrl: environment.apiOrigin,
+    ...(isMapleMainDemo(environment)
+      ? { fetch: createMapleMainFetch(mapleMainImages) }
+      : {}),
     getAuthToken: customerSessions.getAuthToken,
     sessionStore,
   });
@@ -192,11 +195,16 @@ export function createStorefrontRuntime(
 let storefrontRuntime: StorefrontRuntime | undefined;
 
 export function getStorefrontRuntime(): StorefrontRuntime {
-  storefrontRuntime ??= createStorefrontRuntime(
-    readStorefrontRuntimeProfile(),
-    createExpoSecureStorefrontSecretStore(),
-    createAsyncLocalStateStore(),
-  );
+  if (!storefrontRuntime) {
+    const profile = readStorefrontRuntimeProfile();
+    storefrontRuntime = createStorefrontRuntime(
+      profile,
+      isMapleMainDemo(profile.environment)
+        ? createInMemoryStorefrontSecretStore()
+        : createExpoSecureStorefrontSecretStore(),
+      createAsyncLocalStateStore(),
+    );
+  }
 
   return storefrontRuntime;
 }

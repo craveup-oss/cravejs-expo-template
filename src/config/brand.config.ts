@@ -5,20 +5,20 @@ export const brandProfileSchemaVersion = 1 as const;
 export const brandProfileRelease = '0.1.0' as const;
 
 export const brandConfig = {
-  "displayName": "Crave.js Storefront",
-  "legalName": "Crave.js Storefront",
-  "slug": "cravejs-storefront",
-  "scheme": "cravejsstorefront",
-  "iosBundleIdentifier": "com.example.cravejsstorefront",
-  "androidPackage": "com.example.cravejsstorefront",
+  "displayName": "Maple & Main",
+  "legalName": "Maple & Main Demo",
+  "slug": "maple-main",
+  "scheme": "maplemain",
+  "iosBundleIdentifier": "com.example.maplemain",
+  "androidPackage": "com.example.maplemain",
   "copy": {
     "bagEmptyBody": "Your bag is empty. Browse the menu to start an order.",
     "bagEmptyTitle": "Nothing in your bag yet",
     "catalogCategoriesTitle": "Browse the menu",
-    "catalogFooterBody": "Fresh ingredients, prepared to order.",
-    "catalogFooterTitle": "Made for the way you order.",
-    "catalogHeroEyebrow": "Order ahead and skip the queue",
-    "catalogHeroTitle": "ORDER SOMETHING GOOD",
+    "catalogFooterBody": "Smash burgers, crispy chicken and all your favorites.",
+    "catalogFooterTitle": "Come hungry. Leave happy.",
+    "catalogHeroEyebrow": "Your neighborhood American grill",
+    "catalogHeroTitle": "THE GOOD STUFF.",
     "noNearbyStoresTitle": "No locations near you yet",
     "signInClubLabel": "REWARDS",
     "welcomeOnboardingBody": "Browse the menu, build your order and pick it up when it suits you. Sign in to keep your details for next time.",
@@ -46,8 +46,8 @@ export const brandConfig = {
       "storefront.example"
     ]
   },
-  "analyticsNamespace": "cravejs_storefront",
-  "notificationNamespace": "com.example.cravejsstorefront.notifications",
+  "analyticsNamespace": "maple_main",
+  "notificationNamespace": "com.example.maplemain.notifications",
   "capabilities": {
     "delivery": "gated",
     "loyalty": "gated",

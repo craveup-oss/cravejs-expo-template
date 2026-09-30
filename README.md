@@ -11,7 +11,7 @@ than a repository you clone and rename.
 Expo SDK 57 · React Native 0.86 · React 19.2 · expo-router · TypeScript · MIT
 
 > [!IMPORTANT]
-> This repository is a generated public snapshot and a release candidate. The template, the fixture
+> This repository contains the public template and an included restaurant demo. The template, the fixture
 > runtime and `template:materialize` work today; the public `crave` CLI generator has not shipped yet.
 > Clone it to read, run and adapt the template — a clone is not a generated project.
 
@@ -35,17 +35,39 @@ Expo SDK 57 · React Native 0.86 · React 19.2 · expo-router · TypeScript · M
 - Expo tooling resolved through the project (`npx expo`)
 - Xcode for iOS, Android Studio for Android
 
-## Run it
+## Try Maple & Main
+
+The developer-site screenshots show **Maple & Main**, a fictional American neighborhood grill.
+The same menu, burger customization and original AI-generated food photography ship here.
+No credentials or backend are needed (food photos load over HTTPS from this repository):
 
 ```bash
-git clone https://github.com/craveup/cravejs-expo-template.git
+npm ci
+npm run demo -- --web
+# Or: npm run demo -- --ios / --android
+```
+
+This is a **menu-browsing demo**: browse, search, view food photos and customize the burger.
+The banner identifies demo mode; adding to the bag is disabled. Sign-in, payment and all network
+mutations are rejected locally. It never creates orders or contacts a real merchant.
+Native appearance can differ from the website's Expo web screenshots.
+
+The demo uses the existing Storefront SDK's fetch seam with an exact reserved `.example` origin,
+merchant and location. It never intercepts another profile or falls back from a failed live request.
+`npm run ios`, `npm run android` and `npm run web` continue to use your configured live environment.
+See `src/demo/maple-main.ts` and `assets/demo/` to change this sample menu and its photography.
+
+## Run it with your restaurant
+
+```bash
+git clone https://github.com/craveup-oss/cravejs-expo-template.git
 cd cravejs-expo-template
 npm ci
 npm run verify
 npm run ios
 ```
 
-`npm run verify` is lint plus typecheck. `npm run ios`, `npm run android` and `npm run web` start the
+`npm run verify` runs lint, typecheck and the demo SDK/boundary tests. `npm run ios`, `npm run android` and `npm run web` start the
 app on each target.
 
 Copy [`.env.example`](.env.example) to `.env` and fill in the values for your environment. Everything
@@ -102,13 +124,12 @@ any image whose rights are not confirmed. Replace them with your own.
 
 ## Provenance
 
-This repository is generated. Each commit is a validated snapshot of a reviewed private engineering
-commit, and [`.crave/source.json`](.crave/source.json) records the exact source repository and commit.
+The commerce foundation was imported from a reviewed engineering snapshot; [`.crave/source.json`](.crave/source.json) records that baseline source repository and commit. The Maple & Main demo is maintained here.
 Release tags are created only from a commit on `main` after an approval-gated workflow reverifies the
 tree, so a published release names the precise bytes it was built from.
 
-Send code and documentation changes here as pull requests; maintainers apply accepted changes to the
-engineering source, and the next sync brings them back into this repository.
+Send code and documentation changes here as pull requests; maintainers reconcile commerce-core changes with the
+engineering source. Future snapshot syncs must preserve the public demo and its tests.
 
 ## Security
 
